@@ -8,10 +8,16 @@ services:
     volumes:
       - ./web:/app/web
     command: ["npm", "run", "dev", "--", "--host"]
+    depends_on:
+      - api
 
   api:
     container_name: api_project
-    image: node:25-alpine3.22
+    # image: node:25-alpine3.22
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+
     working_dir: /app/api
     ports:
       - 4000:3000
