@@ -1,0 +1,20 @@
+services:
+  web:
+    container_name: web_project
+    image: node:25-alpine3.22
+    working_dir: /app/web
+    ports:
+      - 5000:5173
+    volumes:
+      - ./web:/app/web
+    command: ["npm", "run", "dev", "--", "--host"]
+
+  api:
+    container_name: api_project
+    image: node:25-alpine3.22
+    working_dir: /app/api
+    ports:
+      - 4000:3000
+    volumes:
+      - ./api:/app/api
+    command: ["npm", "run", "start"]
